@@ -6,6 +6,6 @@ class Home extends BaseController
 {
     public function index(): string
     {
-        return "Hello world docker";
+        return "Hello world";
     }
 }
