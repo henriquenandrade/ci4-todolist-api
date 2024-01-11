@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+// $routes->get('/', 'Home::index');
 
 $routes->get('/todos', 'TodoController::index', ['name' => 'index']);
 $routes->get('/todos/(:num)', 'TodoController::show/$1', ['name' => 'show']);
