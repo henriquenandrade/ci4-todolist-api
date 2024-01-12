@@ -1,3 +1,3 @@
 # Todo List Api
 
-API simples em Codeigniter 4
+API simples de Todo List em Codeigniter 4
