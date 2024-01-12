@@ -57,7 +57,7 @@ class TodoController extends BaseController
      *
      * @return ResponseInterface
      */
-    public function store(): ResponseInterface
+    public function create(): ResponseInterface
     {
         if($this->todo->save($this->request->getPost()))
         {
