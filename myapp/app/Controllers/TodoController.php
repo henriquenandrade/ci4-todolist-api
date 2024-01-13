@@ -10,14 +10,14 @@ use CodeIgniter\HTTP\ResponseInterface;
 class TodoController extends BaseController
 {
     use ResponseTrait;
-    
+
     /**
      * Instance of Todo Model
      *
      * @var Todo
      */
     private Todo $todo;
-    
+
     public function __construct()
     {
         $this->todo = model(Todo::class);
@@ -25,13 +25,13 @@ class TodoController extends BaseController
 
     /**
      * List Todos
-     * 
+     *
      * @return ResponseInterface
      */
     public function index(): ResponseInterface
     {
         $todos = $this->todo->findAll();
-        
+
         return $this
             ->setResponseFormat("json")
             ->respond($todos, 200);
@@ -59,8 +59,7 @@ class TodoController extends BaseController
      */
     public function create(): ResponseInterface
     {
-        if($this->todo->save($this->request->getPost()))
-        {
+        if($this->todo->save($this->request->getJSON())) {
             $todo = $this->todo->find($this->todo->insertID());
             return $this
                 ->setResponseFormat("json")
@@ -83,8 +82,7 @@ class TodoController extends BaseController
         if($this->todo->update($id, [
             "name" => $this->request->getVar('name'),
             "done" => $this->request->getVar('done')
-        ]))
-        {
+        ])) {
             $todo = $this->todo->find($id);
             return $this
                 ->setResponseFormat("json")
@@ -104,11 +102,10 @@ class TodoController extends BaseController
      */
     public function delete(int $id): ResponseInterface
     {
-        if($this->todo->delete($id))
-        {
+        if($this->todo->delete($id)) {
             return $this
                 ->setResponseFormat("json")
-                ->respondDeleted($this->todo->findAll(), 'Success Todo deleted'); 
+                ->respondDeleted($this->todo->findAll(), 'Success Todo deleted');
         }
 
         return $this
